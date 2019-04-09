@@ -12,7 +12,8 @@ package main;
 public class Cine {
 
     private Pelicula[] peliculas;
-    private Sala sala;
+    // ARREGLO DE SALAS (3 salas)
+    private Sala[] salas;
     private float precio;
 
     public Cine() {
@@ -25,7 +26,7 @@ public class Cine {
      */
     public Cine(float precio){
         this.peliculas = new Pelicula[]{new Pelicula("Capitana Marvel", 125, 13, "Anna Boden, Ryan Fleck")};
-        this.sala = new Sala();
+        this.salas = new Sala[]{new Sala(), new Sala(), new Sala()};
         this.precio = precio;
     }
     
@@ -36,9 +37,9 @@ public class Cine {
      * @param sala Objeto sala donde se proyectan peliculas 
      * @param precio Precio de cualquier función en el cine
      */
-    public Cine(Pelicula[] peliculas, Sala sala, float precio) {
+    public Cine(Pelicula[] peliculas, Sala[] salas, float precio) {
         this.peliculas = peliculas;
-        this.sala = sala;
+        this.salas = salas;
         this.precio = precio;
     }
 
@@ -47,13 +48,13 @@ public class Cine {
      * Inserta un espectador en un asiento aleatorio
      * @param e Espectador a insertar
      */
-    public void insertarEspectador(Espectador e) {
+    public void insertarEspectador(Espectador e, int sala) {
 
         if (e.getDinero() >= precio && e.getEdad() >= peliculas[0].getEdad()
-                && sala.hayEspacio()) {
+                && salas[sala].hayEspacio()) {
 
             e.setDinero(e.getDinero() - precio);
-            sala.insertNext(e);
+            salas[sala].insertNext(e);
 
         }
     }
@@ -65,12 +66,12 @@ public class Cine {
         this.peliculas = peliculas;
     }
 
-    public Sala getSala() {
-        return sala;
+    public Sala getSala(int sala) {
+        return salas[sala];
     }
 
-    public void setSala(Sala sala) {
-        this.sala = sala;
+    public void setSala(Sala sala, int idx) {
+        this.salas[idx] = sala;
     }
 
     public float getPrecio() {
@@ -90,7 +91,8 @@ public class Cine {
      * Imprime la sala completa, marcando con "XX" los asientos que no están disponible (están ocupados)
      */
     void imprimeSala() {
-        sala.Print();
+        for (Sala sala : salas)
+            sala.Print();
     }
 
 }
