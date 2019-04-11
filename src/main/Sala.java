@@ -9,23 +9,32 @@ import java.util.Random;
 
 /**
  * Clase Sala contiene un arreglo de asientos, otro de espectadores
+ * La clase Sala extiende de Thread para que pueda ser ejecutada en un hilo diferente al hilo padre de cine/App.frame
  * @author josea
  */
-public class Sala {
+public class Sala extends Thread{
     
     private Asiento[][] asientos;
     private Asiento[] asientosRnd;
     private int nAsiento;
+    
+    // CADA SALA NECESITA UNA LISTA DE PELICULAS QUE REPRODUCIR
+    private Pelicula[] peliculas;
+    
+    
     /**
      * Construcor simple para una Sala
      * Genera un arreglo de asientos con medida especificada de 8X9
      * Genera un vector con los elementos del arreglo de asientos de forma desordenada
      * Con este vector se asegura de no insertar Espectadores en un mismo asiento
+     * Al iniciarse una sala, necesita del arreglo de peliculas
      */
-    public Sala() {
+    public Sala(Pelicula[] pelis) {
         asientos = new Asiento[8][9];
         asientosRnd = new Asiento[72];
         nAsiento = 0;
+        this.peliculas = pelis; // ASIGNACION POR REFERENCIA
+        
         Random rnd = new Random();
         String[] nombres = {"Antonio", "Jesus", "Marcos", "Daniel", "Jose", "Eluney",
             "Angel", "Salma", "Salvador", "Josue", "German", "Oswaldo",
@@ -50,6 +59,14 @@ public class Sala {
             asientosRnd[i] = asientosRnd[j];
             asientosRnd[j] = aux;
         }
+        
+    }
+    
+    
+    // SOBRE ESCRIBE EL METODO RUN, PARA CUANDO SE ACTIVA EL START DE LA CLASE
+    @Override 
+    public void run(){
+        // REPRODUCIR LAS PELICULAS SI ES QUE SE ENCUENTRA EN REPRODUCCION
         
     }
 

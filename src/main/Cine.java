@@ -30,6 +30,19 @@ public class Cine {
         this.precio = precio;
     }
     
+    public void iniciarSalas(){
+        if (salas.length <= 0)
+            return;
+    
+        salas[0].start();
+        salas[1].start();
+        salas[2].start();
+    }
+    
+    public void iniciarSala(int idx){
+        salas[idx].start();
+    }
+    
     
     /**
      * Constructro completo
@@ -84,7 +97,11 @@ public class Cine {
 
     @Override
     public String toString() {
-        return "CineTecLaguna Nombre: " + peliculas + ", Sala: " + sala + ", Precio: $" + precio;
+        String str = "";
+        for (Sala sala : salas)
+            str += "CineTecLaguna Nombre: " + peliculas + ", Sala: " + sala + ", Precio: $" + precio + "\n";
+        
+        return str;  
     }
 
     /**
