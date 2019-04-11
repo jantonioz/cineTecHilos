@@ -16,6 +16,7 @@ public class Cine {
     // ARREGLO DE SALAS (3 salas)
     private Sala[] salas;
     private float precio;
+    private Procesador proc;
 
     public Cine() {
     }
@@ -34,7 +35,11 @@ public class Cine {
             new Pelicula("Deadpool 2", 120, 18, ""),
             new Pelicula("Avengers Infinity war", 130, 13, "")
         };
-        this.salas = new Sala[]{new Sala(peliculas, 1), new Sala(peliculas, 2), new Sala(peliculas, 3)};
+        proc = new Procesador();
+        this.salas = new Sala[]{
+            new Sala(peliculas, 0, proc), 
+            new Sala(peliculas, 1, proc), 
+            new Sala(peliculas, 2, proc)};
         this.precio = precio;
     }
 
