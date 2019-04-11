@@ -20,6 +20,7 @@ public class Sala extends Thread{
     
     // CADA SALA NECESITA UNA LISTA DE PELICULAS QUE REPRODUCIR
     private Pelicula[] peliculas;
+    private int idSala;
     
     
     /**
@@ -29,11 +30,12 @@ public class Sala extends Thread{
      * Con este vector se asegura de no insertar Espectadores en un mismo asiento
      * Al iniciarse una sala, necesita del arreglo de peliculas
      */
-    public Sala(Pelicula[] pelis) {
+    public Sala(Pelicula[] pelis, int id) {
         asientos = new Asiento[8][9];
         asientosRnd = new Asiento[72];
         nAsiento = 0;
         this.peliculas = pelis; // ASIGNACION POR REFERENCIA
+        this.idSala = id;
         
         Random rnd = new Random();
         String[] nombres = {"Antonio", "Jesus", "Marcos", "Daniel", "Jose", "Eluney",
