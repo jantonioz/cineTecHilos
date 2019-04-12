@@ -42,6 +42,7 @@ public class Sala extends Thread {
         nAsiento = 0;
         this.peliculas = pelis; // ASIGNACION POR REFERENCIA
         this.idSala = id;
+        this.proc = proc;
 
         Random rnd = new Random();
         String[] nombres = {"Antonio", "Jesus", "Marcos", "Daniel", "Jose", "Eluney",
