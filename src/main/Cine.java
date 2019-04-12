@@ -48,6 +48,8 @@ public class Cine {
 
     public boolean pararSala(int idSala) {
         if (proc.getSalaEnPausa() == idSala) {
+            proc.setSalaEnPausa(-1);
+            salas[idSala].avisarQueContinueLaSala();
             return false; // CONTINUAR CON LA REPRODUCCION
         }
         proc.setSalaEnPausa(idSala);

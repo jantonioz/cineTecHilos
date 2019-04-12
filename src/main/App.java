@@ -143,26 +143,38 @@ public class App extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciar1ActionPerformed
-        
-        
-        
-        if (mCine.pararSala(0)) {
-            System.out.println("SALA 0 parada");
-            return;
-        }
-        
-        System.out.println("Reiniciando sala 0");
-        
 
+        PausaReanuda(0);
+
+        btnIniciar2.setEnabled(!btnIniciar2.isEnabled());
+        btnIniciar3.setEnabled(!btnIniciar3.isEnabled());
     }//GEN-LAST:event_btnIniciar1ActionPerformed
 
     private void btnIniciar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciar2ActionPerformed
         // TODO add your handling code here:
+        PausaReanuda(1);
+
+        btnIniciar1.setEnabled(!btnIniciar1.isEnabled());
+        btnIniciar3.setEnabled(!btnIniciar3.isEnabled());
     }//GEN-LAST:event_btnIniciar2ActionPerformed
 
     private void btnIniciar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciar3ActionPerformed
         // TODO add your handling code here:
+        PausaReanuda(2);
+
+        btnIniciar1.setEnabled(!btnIniciar1.isEnabled());
+        btnIniciar2.setEnabled(!btnIniciar2.isEnabled());
     }//GEN-LAST:event_btnIniciar3ActionPerformed
+
+    void PausaReanuda(int id) {
+        if (mCine.pararSala(0)) {
+            System.out.println("SALA " + id + " parada");
+            return;
+        }
+
+        System.out.println("Reiniciando sala " + id);
+
+    }
 
     /**
      * @param args the command line arguments

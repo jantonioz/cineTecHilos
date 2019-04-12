@@ -26,7 +26,7 @@ public class Sala extends Thread {
     // CADA SALA NECESITA UNA LISTA DE PELICULAS QUE REPRODUCIR
     private Pelicula[] peliculas;
     private int peliculaEnReproduccion = 0;
-    
+
     private int idSala;
 
     /**
@@ -86,32 +86,40 @@ public class Sala extends Thread {
                         System.out.println("EN PAUSA SALA: " + idSala);
                         lock.wait();
                         System.out.println("Reanudando sala : " + idSala);
-                    } 
-                    
+                    }
+
                     // REPRODUCIR MEDIA PELICULA Y LUEGO PARAR UN MOMENTO Y CONTINUAR
-                    System.out.println("[SALA:" + idSala+"] -> " + peliculas[peliculaEnReproduccion].getTitulo());
-                    
-                    Thread.sleep(peliculas[peliculaEnReproduccion].getDuracion() * 100 / 2); // MEDIA PELICULA
-                    
-                    
-                    System.out.println("INTERMEDIO DE LA PELICULA " + peliculas[peliculaEnReproduccion].getTitulo());
-                    Thread.sleep(1500); // INTERMEDIO DE 1.5 seg
-                    
-                    Thread.sleep(peliculas[peliculaEnReproduccion].getDuracion() * 100 / 2); // SEGUNDA MITAD
-                    
-                    peliculaEnReproduccion++; // CONTINUAR CON LA SIGUIENTE PELICULA
-                    
+                    if (proc.getSalaEnPausa() != idSala) {
+                        System.out.println("[SALA:" + idSala + "] -> " + peliculas[peliculaEnReproduccion].getTitulo());
+
+                        Thread.sleep(peliculas[peliculaEnReproduccion].getDuracion() * 100 / 2); // MEDIA PELICULA
+                    }
+                    if (proc.getSalaEnPausa() != idSala) {
+                        System.out.println("INTERMEDIO DE LA PELICULA " + peliculas[peliculaEnReproduccion].getTitulo());
+                        Thread.sleep(1500); // INTERMEDIO DE 1.5 seg
+                    }
+                    if (proc.getSalaEnPausa() != idSala) {
+                        System.out.println("REANUDANDO " + peliculas[peliculaEnReproduccion].getTitulo() + " DESPUÉS DEL INTERMEDIO");
+                        Thread.sleep(peliculas[peliculaEnReproduccion].getDuracion() * 100 / 2); // SEGUNDA MITAD
+                    }
+                    if (proc.getSalaEnPausa() != idSala) {
+
+                        System.out.println("Finalizando" + peliculas[peliculaEnReproduccion].getTitulo());
+                        peliculaEnReproduccion++; // CONTINUAR CON LA SIGUIENTE PELICULA
+                    }
                 }
             }
         } catch (InterruptedException ex) {
             Logger.getLogger(Sala.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    public void avisarQueContinueLaSala(){
-        if (proc.getSalaEnPausa() != idSala)
-            lock.notify(); // NOTIFICA AL CANDADO QUE YA PUEDA CONTINUAR CON LA REPRODUCCION
+
+    public void avisarQueContinueLaSala() {
+        if (proc.getSalaEnPausa() != idSala) {
+            synchronized (lock) {
+                lock.notify(); // NOTIFICA AL CANDADO QUE YA PUEDA CONTINUAR CON LA REPRODUCCION
+            }
+        }
     }
 
     public Asiento[][] getAsientos() {

@@ -12,11 +12,11 @@ package main;
 public class Procesador {
     int SalaEnPausa = -1;
 
-    synchronized int getSalaEnPausa() {
+    int getSalaEnPausa() {
         return SalaEnPausa;
     }
 
-    synchronized void setSalaEnPausa(int SalaEnPausa) {
+    void setSalaEnPausa(int SalaEnPausa) {
         this.SalaEnPausa = SalaEnPausa;
     }
 }
