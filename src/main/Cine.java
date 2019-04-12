@@ -37,10 +37,25 @@ public class Cine {
         };
         proc = new Procesador();
         this.salas = new Sala[]{
-            new Sala(peliculas, 0, proc), 
-            new Sala(peliculas, 1, proc), 
+            new Sala(peliculas, 0, proc),
+            new Sala(peliculas, 1, proc),
             new Sala(peliculas, 2, proc)};
         this.precio = precio;
+    }
+
+    public boolean pararSala(int idSala) {
+        if (proc.getSalaEnPausa() == idSala) {
+            return false; // INDICA QUE YA ESTABA PAUSADA
+        }
+        proc.setSalaEnPausa(idSala);
+        return true; // PAUSÓ EFECTIVAMENTE LA SALA
+    }
+
+    public void quitarPausaSiEstaPausado(int idSala) {
+        if (proc.getSalaEnPausa() == idSala) {
+            proc.setSalaEnPausa(-1);
+            salas[idSala].avisarQueContinueLaSala();
+        }
     }
 
     public void iniciarSalas() {

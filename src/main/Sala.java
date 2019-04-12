@@ -82,14 +82,19 @@ public class Sala extends Thread {
             while (true) {
                 synchronized (lock) {
                     if (proc.getSalaEnPausa() == idSala) {
+                        System.out.println("EN PAUSA SALA: " + idSala);
                         lock.wait();
+                        System.out.println("Reanudando sala : " + idSala);
                     } 
                     
                     // REPRODUCIR MEDIA PELICULA Y LUEGO PARAR UN MOMENTO Y CONTINUAR
+                    System.out.println("[SALA:" + idSala+"] -> " + peliculas[peliculaEnReproduccion].getTitulo());
                     
                     Thread.sleep(peliculas[peliculaEnReproduccion].getDuracion() * 100 / 2); // MEDIA PELICULA
                     
+                    
                     System.out.println("INTERMEDIO DE LA PELICULA " + peliculas[peliculaEnReproduccion].getTitulo());
+                    Thread.sleep(1500); // INTERMEDIO DE 1.5 seg
                     
                     Thread.sleep(peliculas[peliculaEnReproduccion].getDuracion() * 100 / 2); // SEGUNDA MITAD
                     

@@ -13,7 +13,7 @@ public class App extends javax.swing.JFrame {
 
     // OBJETO CINE QUE CONTROLA LAS SALAS
     Cine mCine;
-    
+
     public App() {
         initComponents();
         // INICIA CON UN PRECIO DE FUNCION INICIAL A 55 PESOS
@@ -144,6 +144,16 @@ public class App extends javax.swing.JFrame {
 
     private void btnIniciar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciar1ActionPerformed
         
+        
+        
+        if (mCine.pararSala(0)) {
+            System.out.println("SALA 0 parada");
+            return;
+        }
+        
+        System.out.println("Reiniciando sala 0");
+        
+
     }//GEN-LAST:event_btnIniciar1ActionPerformed
 
     private void btnIniciar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciar2ActionPerformed
