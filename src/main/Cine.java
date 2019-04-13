@@ -47,7 +47,6 @@ public class Cine {
     }
 
     public boolean pararSala(int idSala) {
-        synchronized (proc) {
             if (proc.getSalaEnPausa() == idSala) {
                 proc.setSalaEnPausa(-1);
                 salas[idSala].avisarQueContinueLaSala();
@@ -55,7 +54,6 @@ public class Cine {
             }
             proc.setSalaEnPausa(idSala);
             return true; // PAUSÓ EFECTIVAMENTE LA SALA
-        }
     }
 
     public void quitarPausaSiEstaPausado(int idSala) {

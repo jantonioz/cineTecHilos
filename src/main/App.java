@@ -56,7 +56,7 @@ public class App extends javax.swing.JFrame {
             }
         });
 
-        lblSala1.setText("ESTADO: INICIADO/PAUSADO");
+        lblSala1.setText("ESTADO: REPRODUCIENDO");
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Sala 2");
@@ -68,7 +68,7 @@ public class App extends javax.swing.JFrame {
             }
         });
 
-        lblSala2.setText("ESTADO: INICIADO/PAUSADO");
+        lblSala2.setText("ESTADO: REPRODUCIENDO");
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Sala 3");
@@ -80,7 +80,7 @@ public class App extends javax.swing.JFrame {
             }
         });
 
-        lblSala3.setText("ESTADO: INICIADO/PAUSADO");
+        lblSala3.setText("ESTADO: REPRODUCIENDO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,7 +109,7 @@ public class App extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(btnIniciar3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,7 +136,7 @@ public class App extends javax.swing.JFrame {
                         .addComponent(btnIniciar3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblSala3)))
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -159,7 +159,7 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciar2ActionPerformed
 
     private void btnIniciar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciar3ActionPerformed
-        // TODO add your handling code here:
+
         PausaReanuda(2);
 
         btnIniciar1.setEnabled(!btnIniciar1.isEnabled());
@@ -167,20 +167,35 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciar3ActionPerformed
 
     void PausaReanuda(int id) {
+        
+        // CREA UN NUEVO HILO DE EJECUCION PARA EVITAR PROBLEMAS EN LA APP VISUAL
         new Thread() {
             @Override
             public void run() {
 
                 if (mCine.pararSala(id)) {
                     System.out.println("SALA " + id + " parada");
-                    return;
+                    cambiarEstadoSala(id, true);
+                } else {
+                    cambiarEstadoSala(id, false);
+                    System.out.println("Reiniciando sala " + id);
                 }
-
-                System.out.println("Reiniciando sala " + id);
             }
 
         }.start();
 
+    }
+    // ACTUALIZA LAS LABELS DE ESTADOS DE CADA SALA
+    void cambiarEstadoSala(int id, boolean pausa) {
+        if (id == 0) {
+            lblSala1.setText("ESTADO: " + (pausa ? "PAUSA" : "REPRODUCIENDO"));
+        }
+        if (id == 1) {
+            lblSala1.setText("ESTADO: " + (pausa ? "PAUSA" : "REPRODUCIENDO"));
+        }
+        if (id == 2) {
+            lblSala1.setText("ESTADO: " + (pausa ? "PAUSA" : "REPRODUCIENDO"));
+        }
     }
 
     /**

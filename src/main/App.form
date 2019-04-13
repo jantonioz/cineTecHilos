@@ -53,7 +53,7 @@
                       <Component id="jLabel6" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="36" max="32767" attributes="0"/>
+              <EmptySpace pref="33" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -86,7 +86,7 @@
                       <Component id="lblSala3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="167" max="32767" attributes="0"/>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -117,7 +117,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblSala1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ESTADO: INICIADO/PAUSADO"/>
+        <Property name="text" type="java.lang.String" value="ESTADO: REPRODUCIENDO"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -136,7 +136,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblSala2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ESTADO: INICIADO/PAUSADO"/>
+        <Property name="text" type="java.lang.String" value="ESTADO: REPRODUCIENDO"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
@@ -155,7 +155,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblSala3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ESTADO: INICIADO/PAUSADO"/>
+        <Property name="text" type="java.lang.String" value="ESTADO: REPRODUCIENDO"/>
       </Properties>
     </Component>
   </SubComponents>
