@@ -41,19 +41,21 @@ public class Cine {
             new Sala(peliculas, 1, proc),
             new Sala(peliculas, 2, proc)};
         this.precio = precio;
-        
+
         // INICIA LOS HILOS DE SALAS
         iniciarSalas();
     }
 
     public boolean pararSala(int idSala) {
-        if (proc.getSalaEnPausa() == idSala) {
-            proc.setSalaEnPausa(-1);
-            salas[idSala].avisarQueContinueLaSala();
-            return false; // CONTINUAR CON LA REPRODUCCION
+        synchronized (proc) {
+            if (proc.getSalaEnPausa() == idSala) {
+                proc.setSalaEnPausa(-1);
+                salas[idSala].avisarQueContinueLaSala();
+                return false; // CONTINUAR CON LA REPRODUCCION
+            }
+            proc.setSalaEnPausa(idSala);
+            return true; // PAUSÓ EFECTIVAMENTE LA SALA
         }
-        proc.setSalaEnPausa(idSala);
-        return true; // PAUSÓ EFECTIVAMENTE LA SALA
     }
 
     public void quitarPausaSiEstaPausado(int idSala) {

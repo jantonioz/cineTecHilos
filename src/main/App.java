@@ -167,12 +167,19 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciar3ActionPerformed
 
     void PausaReanuda(int id) {
-        if (mCine.pararSala(0)) {
-            System.out.println("SALA " + id + " parada");
-            return;
-        }
+        new Thread() {
+            @Override
+            public void run() {
 
-        System.out.println("Reiniciando sala " + id);
+                if (mCine.pararSala(id)) {
+                    System.out.println("SALA " + id + " parada");
+                    return;
+                }
+
+                System.out.println("Reiniciando sala " + id);
+            }
+
+        }.start();
 
     }
 
